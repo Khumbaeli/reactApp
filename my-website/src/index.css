@@ -11,3 +11,69 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.intro-page {
+  position: relative;
+  height: 100vh;
+  background: url('./assets/Pictures/intro.jpeg') no-repeat center center/cover;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+}
+.text {
+    flex: 1;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    top: -50px; /* Adjust this value to move the text higher */
+}
+.text h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+}
+
+.social-icons a {
+    color: white;
+    margin: 0 10px;
+    transition: color 0.3s;
+}
+
+.social-icons a:hover {
+    color: #1da1f2; /* Change this to the color you prefer */
+}
+
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+
+    .social-icons a {
+        margin: 0 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .social-icons a {
+        margin: 0 5px;
+    }
+}
