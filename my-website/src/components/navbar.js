@@ -1,35 +1,50 @@
 import React, {useState} from 'react';
 import './navbar.css';
 import logo from '../assets/Pictures/Yosemite National Park.png';
-import {Link} from 'react-scroll';
+import { NavLink } from "react-router-dom";
+import {faBars} from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const Navbar = () => {
-    const [isOpen, setIsOpen] = useState(false);
+    const [showNavbar, setShowNavbar] = useState(false)
 
-    const toggleMenu = () => {
-        setIsOpen(!isOpen);
-    };
+    const handleShowNavbar = () => {
+      setShowNavbar(!showNavbar)
+    }
 
     return (
-        <nav className='navbar'>
-            <img src={logo} alt='logo' className='logo'/>
-
-            <div className={`nav-links ${isOpen ? 'open' : ''}`}>
-                <div className="hamburger" onClick={toggleMenu}>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                    <div className="bar"></div>
-                </div>
+      <nav className='navbar'> 
+        <div className='container'>
+            
+        <div className="logo">
+          <img className="logo" src={logo} alt='Yose'/>
+        </div>
+        <div className="menu-icon" onClick={handleShowNavbar}>
+            <FontAwesomeIcon color='black'icon={faBars}/>
+        </div>
+            <div className={`nav-elements  ${showNavbar && 'active'}`}>
+            <ul>
+                <li>
+                <NavLink to="/">Home</NavLink>
+                </li>
+                <li>
+                <NavLink to="/projects">Projects</NavLink>
+                </li>
+                <li>
+                <NavLink to="/about">About</NavLink>
+                </li>
+                <li>
+                <NavLink to="/photos">Photography</NavLink>
+                </li>
+                <li>
+                <NavLink to="/climbing">Climbing</NavLink>
+                </li>
+            </ul>
             </div>
-            <div className='desktopMenu'>
-                <Link className='desktopMenuListItem'>Home</Link>
-                <Link className='desktopMenuListItem'>Projects</Link>
-                <Link className='desktopMenuListItem'>About</Link>
-                <Link className='desktopMenuListItem'>Pictures</Link>
-                <Link className='desktopMenuListItem'>Climbing</Link>
-            </div>
-        </nav>
+        </div>
+      </nav>
     )
-}
-
-export default Navbar;
+  }
+  
+  export default Navbar
