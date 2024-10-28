@@ -1,3 +1,25 @@
-p{
-    text-decoration-color: black;
-}
+.about-me {
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    color: black; /* Set text color to black */
+    text-align: center; /* Center align the content */
+  }
+  
+  .about-me h1 {
+    color: black; /* Set text color to black */
+  }
+  
+  .about-me-image {
+    width: 50%; /* Increase the size of the image */
+    height: 70%; /* Ensure the height matches the width for a perfect circle */
+    border-radius: 50%; /* Make the image circular */
+    margin: 20px 30px; /* Center the image and add margin */
+  }
+  
+  .about-me p {
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: black; /* Set text color to black */
+  }
+  
