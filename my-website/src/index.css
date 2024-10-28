@@ -24,7 +24,7 @@ body {
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+      background-color: rgba(0, 69, 0, 0.5); /* Dark overlay */
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -35,7 +35,7 @@ body {
   }
   .text {
       flex: 1;
-      color: white;
+   
       text-align: center;
       padding: 20px;
       position: relative;
