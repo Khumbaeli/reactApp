@@ -1,13 +1,17 @@
-from flask import Flask, jsonify
-from flask_cors import CORS
+from fastapi import Depends, FastAPI
+from backend import database
+from typing import Annotated
+from sqlalchemy.orm import Session
+from backend import database_models
 
-app = Flask(__name__)
-CORS(app)
+app = FastAPI()
 
-@app.route('/api/data', methods=['GET'])
-def get_data():
-    data = {"message": "Hello from the backend!"}
-    return jsonify(data)
+@app.get('/')
+async def get_root_with_db(db: Annotated[Session, Depends(database.get_db())]):
+
+    all_results = db.query(database_models.TestTable).all()
+
+    return all_results
 
 if __name__ == '__main__':
     app.run(debug=True)
