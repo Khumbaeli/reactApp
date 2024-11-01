@@ -5,7 +5,6 @@ from sqlalchemy.orm import Session
 from backend import database_models
 
 load_dotenv()
-print(os.getenv('ORACLE_DB_USERNAME'))
 
 username = os.getenv('ORACLE_DB_USERNAME')
 password =  os.getenv('ORACLE_DB_PASSWORD')
