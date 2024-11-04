@@ -3,6 +3,7 @@ import Navbar from './components/navbar';
 import './App.css'
 import Home from './pages/home';
 import About from './pages/about';
+import Climb from './pages/climb';
 
 function App() {
 
@@ -13,9 +14,9 @@ function App() {
           <Routes>
             
               <Route exact path ='/' element={<Home />}/>
-  
-        
               <Route path="/about" element={<About />} />
+              <Route path="/climb" element={<Climb />} />
+
 
           </Routes>
           </BrowserRouter>

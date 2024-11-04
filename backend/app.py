@@ -5,9 +5,22 @@ from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
 from backend import database_models
 from backend.schemas import ClimbTableCreate
+from fastapi.middleware.cors import CORSMiddleware
+
+
 
 app = FastAPI()
+origins = [
+    "http://localhost:3000",
+]
 
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get('/climbs')
@@ -38,22 +51,22 @@ async def create_climb(db: Annotated[Session, Depends(database.get_db)], route: 
     return ClimbTableCreate.model_validate(new_route)
     
     
-@app.delete("/delete-by-name/{climb_name}", status_code=status.HTTP_200_OK)
-def delete_climbing_route_by_name(db: Annotated[Session, Depends(database.get_db)],climb_name: str):
+@app.delete("/climbs/{climb_id}", status_code=status.HTTP_200_OK)
+def delete_climbing_route_by_name(db: Annotated[Session, Depends(database.get_db)],climb_id: str):
+    print(climb_id)
     try:
         # Query to find and delete routes with the specific name
         deletion_count = db.query(database_models.ClimbTable).filter(
-            database_models.ClimbTable.climb == climb_name
+            database_models.ClimbTable.climb == climb_id
         ).delete(synchronize_session=False)
         
-        # Commit the deletion
         db.commit()
         
         # Check if any routes were deleted
         if deletion_count == 0:
             raise HTTPException(
                 status_code=status.HTTP_404_NOT_FOUND,
-                detail=f"No climbing routes found with name: {climb_name}"
+                detail=f"No climbing routes found with name: {id}"
             )
         
         return {
