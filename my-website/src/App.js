@@ -4,6 +4,7 @@ import './App.css'
 import Home from './pages/home';
 import About from './pages/about';
 import Climb from './pages/climb';
+import Gallery from './pages/gallery';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
               <Route exact path ='/' element={<Home />}/>
               <Route path="/about" element={<About />} />
               <Route path="/climb" element={<Climb />} />
+              <Route path="/photos" element={<Gallery />} />
 
 
           </Routes>

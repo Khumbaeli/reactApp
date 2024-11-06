@@ -1,5 +1,5 @@
-from fastapi import Depends, FastAPI, HTTPException, status
-from backend import database
+from fastapi import Depends, FastAPI, HTTPException, File, UploadFile, status
+from backend import database, app_settings
 from typing import Annotated
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import SQLAlchemyError
@@ -23,6 +23,7 @@ app.add_middleware(
 )
 
 
+
 @app.get('/climbs')
 async def get_root_with_db(db: Annotated[Session, Depends(database.get_db)]):
 
@@ -30,8 +31,6 @@ async def get_root_with_db(db: Annotated[Session, Depends(database.get_db)]):
 
     return all_results
 
-if __name__ == '__main__':
-    app.run(debug=True)
 
 @app.post("/climbs/", response_model=ClimbTableCreate)
 async def create_climb(db: Annotated[Session, Depends(database.get_db)], route: ClimbTableCreate):
@@ -88,3 +87,47 @@ def delete_climbing_route_by_name(db: Annotated[Session, Depends(database.get_db
             status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
             detail=f"Unexpected error: {str(e)}"
         )
+    
+
+@app.get("/images/")
+async def list_images():
+    try:
+        # List objects in the S3 bucket
+        response = app_settings.s3_client.list_objects_v2(Bucket=app_settings.AWS_S3_BUCKET_NAME)
+        
+        # Generate CloudFront URLs for each object
+        image_urls = []
+        if 'Contents' in response:
+            for obj in response['Contents']:
+                image_url = f"{app_settings.AWS_CLOUDFRONT_URL}/{obj['Key']}"
+                image_urls.append(image_url)
+        
+        return {"urls": image_urls}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.post("/images/")
+async def upload_image(name: str, file: UploadFile = File(...)):
+    try:
+        # Read the file as bytes
+        print(file)
+        print(123)
+
+        # Upload file to S3 with the provided name
+        app_settings.s3_client.upload_fileobj(
+            file.file,
+            app_settings.AWS_S3_BUCKET_NAME,
+            name,
+            ExtraArgs={"ContentType": file.content_type}
+        )
+        
+        # Generate CloudFront URL
+        image_url = f"{app_settings.AWS_CLOUDFRONT_URL}/{name}"
+        
+        return {"url": image_url}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
+
+    
+if __name__ == '__main__':
+    app.run(debug=True)
