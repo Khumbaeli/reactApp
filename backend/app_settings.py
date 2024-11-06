@@ -10,6 +10,8 @@ AWS_SECRET_ACCESS_KEY = os.getenv("AWS_SECRET_ACCESS_KEY")
 AWS_S3_BUCKET_NAME = os.getenv("AWS_S3_BUCKET_NAME")
 AWS_CLOUDFRONT_URL = os.getenv("AWS_CLOUDFRONT_URL")
 
+
+
 s3_client = boto3.client(
     's3',
     aws_access_key_id=AWS_ACCESS_KEY_ID,
