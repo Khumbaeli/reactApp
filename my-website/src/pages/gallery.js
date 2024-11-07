@@ -6,13 +6,11 @@ const Gallery = () => {
   const [imageUrls, setImageUrls] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [uploadError, setUploadError] = useState(null);
-  const [uploadSuccess, setUploadSuccess] = useState(null);
 
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/images/');
+        const response = await axios.get('http://localhost:8000/images/');
         setImageUrls(response.data.urls);
       } catch (err) {
         setError(err.message);
@@ -24,8 +22,12 @@ const Gallery = () => {
     fetchImages();
   }, []);
 
-return (
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
+  return (
     <div className="image-gallery">
+      <h1 className="artsy-heading">Film photography is a chemical miracle.</h1>
       <div className="gallery">
         {imageUrls.map((url, index) => {
           const imageName = decodeURIComponent(url.split('/').pop());

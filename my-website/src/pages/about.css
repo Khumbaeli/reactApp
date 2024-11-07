@@ -13,7 +13,6 @@
   .about-me-image {
     width: 50%; /* Increase the size of the image */
     height: 70%; /* Ensure the height matches the width for a perfect circle */
-    border-radius: 50%; /* Make the image circular */
     margin: 20px 30px; /* Center the image and add margin */
   }
   

@@ -4,6 +4,16 @@
   align-items: center;
 }
 
+.artsy-heading {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 2.5rem;
+  color: #333;
+  text-align: center;
+  margin: 20px 0;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  letter-spacing: 2px;
+}
+
 .gallery {
   display: flex;
   flex-wrap: wrap;
@@ -16,8 +26,6 @@
   width: 200px;
   height: 200px;
   overflow: hidden;
-  z-index: -2;
-
 }
 
 .image-container img {
