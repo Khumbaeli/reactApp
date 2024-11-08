@@ -1,0 +1,46 @@
+.Home{
+    text-align: center;
+}
+.background {
+    background-image: url('../assets/Pictures/intro.jpeg');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    width: 100%;
+    position: absolute;
+    z-index: -2; /* Ensure the background is behind other content */
+  }
+
+  .text { 
+    position: relative; /* Ensure content is above the background */
+    flex: 1;
+    z-index: -1;
+    color: rgba(255, 255, 255, 0.751);
+    text-align: center;
+    -webkit-text-stroke-width: 3px;
+    -webkit-text-stroke: black;
+    padding: 20px;
+    position: relative;
+    left: -450px;
+    top: 125px; /* Adjust this value to move the text higher */
+  }
+  .text h1 {
+    font-size: 1  rem;
+    margin-bottom: 20px;
+  }
+  
+  .social-icons a {
+    margin: 0 10px;
+    transition: color 0.3s;
+  }
+  
+  .social-icons a:hover {
+    color: #1da1f2; /* Change this to the color you prefer */
+  }
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2em;
+    }
+  }
+  

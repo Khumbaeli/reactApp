@@ -1,19 +1,31 @@
-import React, { useEffect, useState } from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import Navbar from './components/navbar';
+import './App.css'
+import Home from './pages/home';
+import About from './pages/about';
+import Climb from './pages/climb';
+import Gallery from './pages/gallery';
+import Portfolio from './pages/portofolio';
 
 function App() {
-  const [data, setData] = useState(null);
-
-  useEffect(() => {
-    fetch('http://localhost:5000/api/data')
-      .then(response => response.json())
-      .then(data => setData(data));
-  }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>{data ? data.message : "Loading..."}</h1>
-      </header>
+    <div>
+          <BrowserRouter>
+          <Navbar/>
+          <Routes>
+            
+              <Route exact path ='/' element={<Home />}/>
+              <Route path="/about" element={<About />} />
+              <Route path='/projects' element = {<Portfolio/>}/>
+              <Route path="/climb" element={<Climb />} />
+              <Route path="/photos" element={<Gallery />} />
+
+
+
+
+          </Routes>
+          </BrowserRouter>
     </div>
   );
 }

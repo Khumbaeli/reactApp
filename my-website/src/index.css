@@ -1,13 +1,79 @@
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
+  
+  .intro-page {
+    position: relative;
+    height: 100vh;
+    background: url('./assets/Pictures/intro.jpeg') no-repeat center center/cover;
+  }
+  
+  .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba(0, 69, 0, 0.5); /* Dark overlay */
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      color: white;
+      text-align: center;
+      padding: 20px;
+  }
+  .text {
+      flex: 1;
+   
+      text-align: center;
+      padding: 20px;
+      position: relative;
+      top: -50px; /* Adjust this value to move the text higher */
+  }
+  .text h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+  }
+  
+  .social-icons a {
+      color: white;
+      margin: 0 10px;
+      transition: color 0.3s;
+  }
+  
+  .social-icons a:hover {
+      color: #1da1f2; /* Change this to the color you prefer */
+  }
+  
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+      h1 {
+          font-size: 2.5rem;
+      }
+  
+      .social-icons a {
+          margin: 0 8px;
+      }
+  }
+  
+  @media (max-width: 480px) {
+      h1 {
+          font-size: 2rem;
+      }
+  
+      .social-icons a {
+          margin: 0 5px;
+      }
+  }
