@@ -12,7 +12,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 origins = [
     "http://localhost:3000",
-    "https://reactapp-rft2.onrender.com/",
+    "https://reactapp-rft2.onrender.com",
 ]
 
 app.add_middleware(
