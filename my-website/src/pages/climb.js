@@ -25,7 +25,7 @@ const Climb = () => {
 
   const handleAddClimb = async () => {
     try {
-      const response = await axios.post('https://website-t922.onrender.com/climbs', newClimb);
+      const response = await axios.post('https://website-t922.onrender.com/climbs/', newClimb);
       setClimbs([...climbs, response.data]);
       setNewClimb({ location: '', climb: '', grade: '' });
     } catch (error) {
