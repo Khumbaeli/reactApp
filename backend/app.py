@@ -30,7 +30,20 @@ async def get_root_with_db(db: Annotated[Session, Depends(database.get_db)]):
 
     all_results = db.query(database_models.ClimbTable).all()
 
-    return all_results
+    def yds_key(grade):
+        # Split the grade into its numerical and letter parts
+        parts = grade.split('.')
+        if len(parts) != 2 or not parts[1]:
+            return (0, '')  # Default for non-matching grades
+        number_part = parts[1][:-1] if parts[1][-1].isalpha() else parts[1]
+        letter_part = parts[1][-1] if parts[1][-1].isalpha() else ''
+        number = int(number_part)
+        return (number, letter_part)
+
+    # Sort the results based on the YDS grade
+    sorted_results = sorted(all_results, key=lambda climb: yds_key(climb.grade), reverse=True)
+
+    return sorted_results
 
 
 @app.post("/climbs/", response_model=ClimbTableCreate)
