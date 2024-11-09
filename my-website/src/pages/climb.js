@@ -9,7 +9,7 @@ const Climb = () => {
   useEffect(() => {
     const fetchClimbs = async () => {
       try {
-        const response = await axios.get('http://127.0.0.1:8000/climbs');
+        const response = await axios.get('https://website-t922.onrender.com/climbs');
         setClimbs(response.data);
       } catch (error) {
         console.error('Error fetching climbs:', error);
@@ -25,7 +25,7 @@ const Climb = () => {
 
   const handleAddClimb = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:8000/climbs/', newClimb);
+      const response = await axios.post('https://website-t922.onrender.com/climbs', newClimb);
       setClimbs([...climbs, response.data]);
       setNewClimb({ location: '', climb: '', grade: '' });
     } catch (error) {
@@ -35,7 +35,7 @@ const Climb = () => {
 
   const handleDeleteClimb = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:8000/climbs/${id}`);
+      await axios.delete(`https://website-t922.onrender.com/climbs/${id}`);
       setClimbs(climbs.filter(climb => climb.id !== id));
     } catch (error) {
       console.error('Error deleting climb:', error);
