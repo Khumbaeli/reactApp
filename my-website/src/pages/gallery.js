@@ -10,7 +10,7 @@ const Gallery = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const response = await axios.get('http://localhost:8000/images/');
+        const response = await axios.get('https://website-t922.onrender.com/images/');
         setImageUrls(response.data.urls);
       } catch (err) {
         setError(err.message);
