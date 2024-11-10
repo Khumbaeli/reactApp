@@ -5,14 +5,19 @@ import './climb.css';
 const Climb = () => {
   const [climbs, setClimbs] = useState([]);
   const [newClimb, setNewClimb] = useState({ location: '', climb: '', grade: '' });
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
 
   useEffect(() => {
     const fetchClimbs = async () => {
       try {
         const response = await axios.get('https://website-t922.onrender.com/climbs');
         setClimbs(response.data);
-      } catch (error) {
-        console.error('Error fetching climbs:', error);
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
       }
     };
     fetchClimbs();
@@ -41,6 +46,9 @@ const Climb = () => {
       console.error('Error deleting climb:', error);
     }
   };
+
+  if (loading) return <p style="color:black;">Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className='c'>
