@@ -47,7 +47,7 @@ const Climb = () => {
     }
   };
 
-  if (loading) return <p style="color:black;">Loading...</p>;
+  if (loading) return <p>Loading...</p>;
   if (error) return <p>Error: {error}</p>;
 
   return (
